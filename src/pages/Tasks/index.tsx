@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import moment from 'moment';
+
+import './index.css';
 
 interface ITask {
   id: number;
@@ -12,13 +15,10 @@ interface ITask {
   created_at: Date;
   update_at: Date;
 }
-
-
-
-
-const Tasks: React.FC = () => {
+  const Tasks: React.FC = () => {
 
   const [tasks, setTasks] = useState<ITask[]>([])
+  const history = useHistory()
 
   useEffect(() => {
     loadTasks()
@@ -36,12 +36,23 @@ const Tasks: React.FC = () => {
     return moment(date).format("DD/MM/YYYY")
   }
 
+  function newTask () {
+    history.push('/tarefas_cadastro')
+  }
+
+  function editTask(id: number){
+    history.push(`/tarefas_cadastro/${id}`)
+  }
+
   return (
     
     <div className="container">
       
         <br/>
-        <h1>Lista de Tarefas</h1>
+        <div className="task-header">
+          <h1>Lista de Tarefas</h1>
+          <Button variant="dark" size="sm" onClick={newTask}>Nova Tarefa</Button>
+        </div>
    
         <Table striped bordered hover className="text-center">
             
@@ -73,7 +84,7 @@ const Tasks: React.FC = () => {
 
                     </td>
                     <td> 
-                      <Button size="sm">Editar</Button>{' '} 
+                      <Button size="sm" onClick={() => editTask(task.id)}>Editar</Button>{' '} 
                       <Button size="sm" variant="success">Finalizar</Button> {' '} 
                       <Button size="sm" variant="info">Visualizar</Button> {' '} 
                       <Button size="sm" variant="danger">Remover</Button> 
