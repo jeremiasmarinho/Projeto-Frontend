@@ -29,7 +29,16 @@ interface ITask {
     const response = await api.get('/tasks')
     console.log(response)
     setTasks(response.data)
-  
+  }
+
+  async function finishedTask(id: number) {
+    await api.patch(`/tasks/${id}`)
+    loadTasks()
+  }
+
+  async function deleteTask(id: number) {
+    await api.delete(`/tasks/${id}`)
+    loadTasks()
   }
  
   function formateDate(date: Date){
@@ -42,6 +51,10 @@ interface ITask {
 
   function editTask(id: number){
     history.push(`/tarefas_cadastro/${id}`)
+  }
+
+  function viewTask(id: number){
+    history.push(`/tarefas/${id}`)
   }
 
   return (
@@ -68,9 +81,7 @@ interface ITask {
               </thead>
               <tbody>
                 {
-                  
-
-                  tasks.map(task => (
+                    tasks.map(task => (
                     <tr key={task.id}>
                     <td>{ task.id }</td>
                     <td>{ task.title }</td>
@@ -84,10 +95,10 @@ interface ITask {
 
                     </td>
                     <td> 
-                      <Button size="sm" onClick={() => editTask(task.id)}>Editar</Button>{' '} 
-                      <Button size="sm" variant="success">Finalizar</Button> {' '} 
-                      <Button size="sm" variant="info">Visualizar</Button> {' '} 
-                      <Button size="sm" variant="danger">Remover</Button> 
+                      <Button size="sm" disabled={task.finished} onClick={() => editTask(task.id)}>Editar</Button>{' '} 
+                      <Button size="sm" disabled={task.finished} onClick={() => finishedTask(task.id)} variant="success">Finalizar</Button> {' '} 
+                      <Button size="sm" onClick={() => viewTask(task.id)} variant="info">Visualizar</Button> {' '} 
+                      <Button size="sm" onClick={() => deleteTask(task.id)} variant="danger">Remover</Button> 
                       </td>            
                     </tr>
                   ))
