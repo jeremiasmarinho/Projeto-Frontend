@@ -88,17 +88,17 @@ interface ITask {
                     <td>{ formateDate(task.update_at)}</td>
                    <td>
 
-                   <Button size="sm" disabled variant={ task.finished ? "success" : "warning"}>
+                   <Button className="button" size="sm" disabled variant={ task.finished ? "success" : "warning"}>
                      {task.finished ? "FINALIZADO" : "PENDENTE"}
 
                    </Button>
 
                     </td>
                     <td> 
-                      <Button size="sm" disabled={task.finished} onClick={() => editTask(task.id)}>Editar</Button>{' '} 
-                      <Button size="sm" disabled={task.finished} onClick={() => finishedTask(task.id)} variant="success">Finalizar</Button> {' '} 
-                      <Button size="sm" onClick={() => viewTask(task.id)} variant="info">Visualizar</Button> {' '} 
-                      <Button size="sm" onClick={() => deleteTask(task.id)} variant="danger">Remover</Button> 
+                      <Button className="button" size="sm" disabled={task.finished} onClick={() => editTask(task.id)}>Editar</Button>{' '} 
+                      <Button className="button" size="sm" disabled={task.finished} onClick={() => finishedTask(task.id)} variant="success">Finalizar</Button> {' '} 
+                      <Button className="button" size="sm" onClick={() => viewTask(task.id)} variant="info">Visualizar</Button> {' '} 
+                      <Button className="button" size="sm" onClick={() => deleteTask(task.id)} variant="danger">Remover</Button> 
                       </td>            
                     </tr>
                   ))

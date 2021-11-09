@@ -55,7 +55,9 @@ const Tasks: React.FC = () => {
       description: response.data.description
     })
   }
-
+  function refreshPage() {
+        window.location.reload();         
+  }
 
   function back () {
     history.goBack()
@@ -86,7 +88,8 @@ const Tasks: React.FC = () => {
                   onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)}/>
                 </Form.Group>
                 <br/>
-                <Button onClick={back} variant="dark" type="submit">Salvar</Button>
+                <Button  onClick={back} variant="dark" type="submit" >Salvar</Button>
+                
                </Form>
         </div>
          
