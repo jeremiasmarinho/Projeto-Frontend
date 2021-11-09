@@ -4,16 +4,19 @@ import "./index.css";
 const Home: React.FC = () => {
   return (
     <body>
+      <div>
       <figure className="snip0015">
         <img src="https://wallpapercave.com/wp/wp2539492.jpg" alt="Tarefas" />
         <figcaption>
           <h2>
             <span>Tarefas</span>
+            
           </h2>
           <p>Anote aqui suas tarefas.</p>
           <a href="/tarefas"></a>
         </figcaption>
       </figure>
+      </div>
     </body>
   );
 };
